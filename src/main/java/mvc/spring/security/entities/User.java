@@ -23,7 +23,8 @@ import static lombok.AccessLevel.*;
 @FieldDefaults(level = PRIVATE)
 public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(generator = "increment")
+    @GenericGenerator(name = "increment", strategy = "increment")
     int id;
     @Column(name = "name", length = 50, unique = true)
     String name;
