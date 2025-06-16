@@ -17,7 +17,6 @@ import static lombok.AccessLevel.PRIVATE;
 
 @Configuration
 @EnableWebSecurity
-@EnableMethodSecurity
 @RequiredArgsConstructor
 @FieldDefaults(level = PRIVATE, makeFinal = true)
 public class SecurityConfig {
