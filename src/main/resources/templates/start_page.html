@@ -79,37 +79,10 @@
 </div>
 <!-- закрыл область деления страницы сеткой -->
 
-<!-- Скрипт для заполнения данных о user: -->
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-        // Загрузка списка пользователей при загрузке страницы
-        loadUsers();
+<!-- Скрипт для этой страницы: -->
+<script src="/js/start_page.js" defer></script> <!--defer — гарантирует выполнение скрипта после полной загрузки DOM (аналог DOMContentLoaded) -->
 
-        // Функция загрузки списка всех пользователей
-        async function loadUsers() {
-            try {
-                const response = await fetch('/api/user');
-                const userDTOs = await response.json();
-                const tbody = document.getElementById('usersTableBody');
-                tbody.innerHTML = '';
-                userDTOs.forEach(userDTO => {
-                    const row = document.createElement('tr');
-                    row.innerHTML = `
-                    <td>${userDTO.id}</td>
-                    <td>${userDTO.name}</td>
-                    <td>${userDTO.age}</td>
-                    <td>${userDTO.email}</td>
-                    <td>${userDTO.roles.map(role => role.name.replace("ROLE_", "")).join(', ')}</td>
-                `;
-                    tbody.appendChild(row);
-                });
-            } catch (error) {
-                console.error('Ошибка при загрузке пользователей:', error);
-            }
-        }
-    });
-</script>
-
+<!-- Скрипт для подключения bootstrap: -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

@@ -84,38 +84,10 @@
 </div>
 <!-- закрыл область деления страницы сеткой -->
 
-<!-- Скрипт для заполнения шапки и таблицы: -->
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-        // Загрузка данных текущего пользователя при загрузке страницы
-        loadCurrentUser();
+<!-- Скрипт для этой страницы: -->
+<script src="/js/user_page.js" defer></script> <!--defer — гарантирует выполнение скрипта после полной загрузки DOM (аналог DOMContentLoaded) -->
 
-        // Функция загрузки данных текущего пользователя и заполения шапки
-        async function loadCurrentUser() {
-            try {
-                const response = await fetch('/api/user/current');
-                const userDTO = await response.json();
-                document.getElementById('user-email').textContent = userDTO.email;
-                document.getElementById('user-roles').textContent = 'with roles: ' +
-                    userDTO.roles.map(role => role.name.replace("ROLE_", "")).join(', ');
-                const tbody = document.getElementById('currentUserTable');
-                tbody.innerHTML = '';
-                const row = document.createElement('tr');
-                row.innerHTML = `
-                <td>${userDTO.id}</td>
-                <td>${userDTO.name}</td>
-                <td>${userDTO.age}</td>
-                <td>${userDTO.email}</td>
-                <td>${userDTO.roles.map(role => role.name.replace("ROLE_", "")).join(', ')}</td>
-            `;
-                tbody.appendChild(row);
-            } catch (error) {
-                console.error('Ошибка загрузки текущего пользователя:', error);
-            }
-        }
-    });
-</script>
-
+<!-- Скрипт для подключения bootstrap: -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
